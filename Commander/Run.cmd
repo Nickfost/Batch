@@ -2,6 +2,7 @@
 echo.
 echo Hi, I can Run the Same command billions of times
 echo.
+echo Please not that this isnt even finshed and is not ready for use
 pause
 cls
 echo We can run the same command one after another (queued) or we can run them all at once

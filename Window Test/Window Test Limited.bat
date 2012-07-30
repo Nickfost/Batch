@@ -1,6 +1,6 @@
 @echo off
 title WARNING
-echo This is VERY DANGEROUS
+echo This is can become VERY DANGEROUS if used incorrectly!
 echo Use at your own risk
 pause
 cls
@@ -9,7 +9,7 @@ echo Number windows to open:
 set/p killnum=
 echo Started opening %killnum% windows at %time% >> Log_Windows_test(limited).txt
 set wind=1
-start cmd
+start explorer.exe
 :a
 if /i "%wind%"=="%killnum%" goto Exit
 ECHO %wind%
@@ -22,6 +22,7 @@ goto a
 :exit
 echo I succsessfully opened %killnum% windows at %time%
 echo I succsessfully opened to %killnum% windows at %time% >> Log_Windows_test(limited).txt
-pause
+pause 
+start Log_Windows_test(limited).txt
 echo ~Nickfost~
 exit

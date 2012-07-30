@@ -1,9 +1,9 @@
 @echo off
 title Exponential Adder By Nickfost
-echo ----------------------------------------------------------------
+echo --------------------------------------------------------------
 echo ^|How many times do you want to exponentialy multiply? (6 max)^| 
 echo ^|Type 'why' to learn why its only a max of 6                 ^|
-echo ----------------------------------------------------------------
+echo --------------------------------------------------------------
 set/p killnum=
 if /i "%killnum%"=="why" goto explian
 SET /A loopcount=1

@@ -49,7 +49,7 @@ echo Unzip application downloaded!
 echo Unzipping...
 cscript unzip.vbs Sigcheck.zip > NUL
 if not exist %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\sigcheck.exe goto unzipfail
-eccho Unzipped!
+echo Unzipped!
 echo Scanning all files in the downloads directory...
 sigcheck.exe -vt -vrs -u -s %USERPROFILE%\Downloads > sigchecklog.txt
 echo Finished!

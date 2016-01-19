@@ -54,7 +54,7 @@ echo Scanning all files in the downloads directory...
 sigcheck.exe -vt -vrs -u -s %USERPROFILE%\Downloads > sigchecklog.txt
 echo Finished!
 echo Opening log...
-start sighecklog.txt
+start sigchecklog.txt
 echo Success!
 echo Hopefully you find use of this script. 
 echo If you are interested in batch just right click this file

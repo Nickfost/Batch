@@ -37,7 +37,7 @@ if exist %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\ CD %USERPRO
 echo Downloading latest Sigcheck...
 REM SIGCHECK WRITTEN BY MARK RUSSINOVICH 
 REM https://technet.microsoft.com/en-us/sysinternals/bb897441.aspx
-bitsadmin.exe /transfer "sigcheck" https://download.sysinternals.com/files/sigcheck.zip %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\Sigcheck.zip >NUL
+bitsadmin.exe /transfer "sigcheck" https://download.sysinternals.com/files/sigcheck.zip %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\sigcheck.zip >NUL
 if not exist %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\Sigcheck.zip goto downloadSigcheckfail
 echo Sigcheck Downloaded!
 echo Downloading unzip application...
@@ -47,23 +47,27 @@ bitsadmin.exe /transfer "unzipvbs" https://raw.githubusercontent.com/govindparma
 if not exist %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\unzip.vbs goto downloadunzipfail
 echo Unzip application downloaded!
 echo Unzipping...
-cscript unzip.vbs Sigcheck.zip > NUL
+echo cd %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\ >> %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\unzip.cmd
+echo cscript unzip.vbs sigcheck.zip >> %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\unzip.cmd
+echo exit >> %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\unzip.cmd
+start "Unzipper" /D %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\ /WAIT /MIN "%USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\unzip.cmd"
 if not exist %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\sigcheck.exe goto unzipfail
-eccho Unzipped!
+echo Unzipped!
 echo Scanning all files in the downloads directory...
 sigcheck.exe -vt -vrs -u -s %USERPROFILE%\Downloads > sigchecklog.txt
 echo Finished!
 echo Opening log...
-start sighecklog.txt
+start "Log" /wait /max "sigchecklog.txt"
 echo Success!
 echo Hopefully you find use of this script. 
 echo If you are interested in batch just right click this file
 echo and click edit. There is plenty to learn!
-
-
 echo Press the any key to exit!
 pause > NUL
-
+echo Removing temp files...
+if exist %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\ RD /S /Q %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\
+if not exist %USERPROFILE%\AppData\Local\Temp\Nickfost\Sigcheck-checker\ echo Removed!
+echo goodbye!
 exit
 
 :unzipfail

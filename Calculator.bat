@@ -1,4 +1,5 @@
 @ECHO off
+color fc
 title Nickfost's Calculator
 ECHO -----------------------------------------------------------
 ECHO ^|Please enter a number with the corrisponding type of math^|
@@ -18,6 +19,7 @@ ECHO Please try agian
 goto start
 :q
 cls
+color 0A
 ECHO Please provide the first number %to% %mathtype3% %from%
 set/p first=
 cls
@@ -25,7 +27,7 @@ ECHO Please provide the second number to %mathtype4%
 ECHO Your current problem stands at %first% %mathtype2% ? = ?
 set/p second=
 cls
-set /a math= %first% %mathtype2% %second% 
+set /a math= %first% %mathtype2% %second%
 ECHO Your result is:
 ECHO %first% %mathtype2% %second% = %math%
 ECHO Would you like to do another math problem?
@@ -38,7 +40,7 @@ exit
 :add
 set mathtype2=+
 set mathtype3=add
-set to=to 
+set to=to
 goto q
 :sub
 set mathtype2=-
